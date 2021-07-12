@@ -1,21 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@ page import = "com.javaex.dao.PhoneDao"  %>
 <%@ page import = "com.javaex.vo.PersonVo"  %>
-<%@ page import = "java.util.List"  %>
     
 <%
 	//Encoding
 	request.setCharacterEncoding("UTF-8");
 
-	// no --> personId
-	int personId = Integer.parseInt(request.getParameter("no"));  
-
-	//getPerson 사용
-	PhoneDao phoneDao = new PhoneDao();
-	PersonVo personVo = phoneDao.getPerson(personId);
-	
+	// Set Attribute
+	PersonVo personVo = (PersonVo)request.getAttribute("getPerson");	
 %>    
     
 <!DOCTYPE html>

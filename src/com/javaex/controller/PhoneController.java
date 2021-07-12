@@ -77,9 +77,17 @@ public class PhoneController extends HttpServlet {
 			response.sendRedirect("/phonebook2/pbc?action=list");
 		} else if ("uform".equals(action)) {
 			
-			int no = Integer.parseInt(request.getParameter("no"));
+			//No
+			int id = Integer.parseInt(request.getParameter("no"));
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/updateForm.jsp?no=" + no);
+			PhoneDao phoneDao = new PhoneDao();
+			PersonVo getPerson = phoneDao.getPerson(id);
+			
+			//Set Attribute
+			request.setAttribute("getPerson", getPerson);
+			
+			//Request Dispatcher
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/updateForm.jsp");
 			rd.forward(request, response);
 			
 		} else if ("update".equals(action)) {

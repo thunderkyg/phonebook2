@@ -145,7 +145,7 @@ public class PhoneDao {
 	}
 	
 	//Delete
-	public int personDelete(int delete) {
+	public int personDelete(int deleteNo) {
 		int count = -1;
 
 		getConnection();
@@ -155,7 +155,7 @@ public class PhoneDao {
 			query += " delete from person ";
 			query += " where person_id = ? ";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, delete);
+			pstmt.setInt(1, deleteNo);
 
 			count = pstmt.executeUpdate();
 			System.out.println(count + "건이 삭제되었습니다.");

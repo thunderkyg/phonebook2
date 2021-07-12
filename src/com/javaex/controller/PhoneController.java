@@ -47,6 +47,8 @@ public class PhoneController extends HttpServlet {
 			System.out.println("[저장]");
 			
 			//dao 저장
+			PhoneDao phoneDao = new PhoneDao();
+			
 			//파라미터를 꺼낸다 name, hp, company
 			String name = request.getParameter("name");
 			String hp = request.getParameter("hp");
@@ -57,14 +59,48 @@ public class PhoneController extends HttpServlet {
 			System.out.println(personVo);
 			
 			//dao personInsert
-			PhoneDao phoneDao = new PhoneDao();
 			phoneDao.personInsert(personVo);
+			
+			//Redirect
+			response.sendRedirect("/phonebook2/pbc?action=list");
+		} else if ("delete".equals(action)) {
+			System.out.println("[삭제]");
+			
+			//dao
+			PhoneDao phoneDao = new PhoneDao();
+			int no = Integer.parseInt(request.getParameter("no"));
+			
+			//dao personDelete
+			phoneDao.personDelete(no);
+			
+			//redirect
+			response.sendRedirect("/phonebook2/pbc?action=list");
+		} else if ("uform".equals(action)) {
+			
+			int no = Integer.parseInt(request.getParameter("no"));
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/updateForm.jsp?no=" + no);
+			rd.forward(request, response);
+			
+		} else if ("update".equals(action)) {
+			System.out.println("[수정]");
+			
+			PhoneDao phoneDao = new PhoneDao();
+			
+			//Parameter
+			int personId = Integer.parseInt(request.getParameter("no"));
+			String personName = request.getParameter("name");
+			String personHp = request.getParameter("hp");
+			String personCompany = request.getParameter("company");
+			
+			//Update Using Dao
+			PersonVo personVo = new PersonVo(personId, personName, personHp, personCompany);
+			phoneDao.personUpdate(personVo);
 			
 			//Redirect
 			response.sendRedirect("/phonebook2/pbc?action=list");
 		}
 		
-		//dao --> 저장
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

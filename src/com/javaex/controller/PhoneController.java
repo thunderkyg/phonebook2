@@ -62,7 +62,7 @@ public class PhoneController extends HttpServlet {
 			phoneDao.personInsert(personVo);
 			
 			//Redirect
-			response.sendRedirect("/phonebook2/pbc?action=list");
+			response.sendRedirect("./pbc?action=list");
 		} else if ("delete".equals(action)) {
 			System.out.println("[삭제]");
 			
@@ -74,7 +74,7 @@ public class PhoneController extends HttpServlet {
 			phoneDao.personDelete(no);
 			
 			//redirect
-			response.sendRedirect("/phonebook2/pbc?action=list");
+			response.sendRedirect("./pbc?action=list");
 		} else if ("uform".equals(action)) {
 			
 			//No
@@ -106,7 +106,7 @@ public class PhoneController extends HttpServlet {
 			phoneDao.personUpdate(personVo);
 			
 			//Redirect
-			response.sendRedirect("/phonebook2/pbc?action=list");
+			response.sendRedirect("./pbc?action=list");
 		}
 		
 	}

@@ -37,11 +37,11 @@
 				<td><%=personList.get(i).getCompany() %></td>
 			</tr>
 			<tr>
-				<td><a href="/phonebook2/pbc?action=delete&no=<%=personList.get(i).getPersonId() %>">[삭제]</a></td>
-				<td><a href="/phonebook2/pbc?action=uform&no=<%=personList.get(i).getPersonId() %>">[수정]</a></td>
+				<td><a href="./pbc?action=delete&no=<%=personList.get(i).getPersonId() %>">[삭제]</a></td>
+				<td><a href="./pbc?action=uform&no=<%=personList.get(i).getPersonId() %>">[수정]</a></td>
 			</tr>
 		</table><br>
 	<% } %>
-	<a href="/phonebook2/pbc?action=wform">추가번호 등록</a>
+	<a href="./pbc?action=wform">추가번호 등록</a>
 </body>
 </html>

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.javaex.dao.PhoneDao;
+import com.javaex.util.WebUtil;
 import com.javaex.vo.PersonVo;
 
 
@@ -38,8 +39,11 @@ public class PhoneController extends HttpServlet {
 			
 			
 			//html 작업 --> jsp에게 시킨다 ==> Forward 한다 
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/list.jsp");
-			rd.forward(request, response);
+//			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/list.jsp");
+//			rd.forward(request, response);
+			
+			WebUtil.forward(request, response, "WEB-INF/writeForm.jsp");
+			
 		} else if("wform".equals(action)) {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/writeForm.jsp");
 			rd.forward(request, response);
@@ -62,7 +66,9 @@ public class PhoneController extends HttpServlet {
 			phoneDao.personInsert(personVo);
 			
 			//Redirect
-			response.sendRedirect("./pbc?action=list");
+//			response.sendRedirect("./pbc?action=list");
+			WebUtil.redirect(request, response, "./pbc?action=list");
+			
 		} else if ("delete".equals(action)) {
 			System.out.println("[삭제]");
 			
@@ -74,7 +80,9 @@ public class PhoneController extends HttpServlet {
 			phoneDao.personDelete(no);
 			
 			//redirect
-			response.sendRedirect("./pbc?action=list");
+//			response.sendRedirect("./pbc?action=list");
+			WebUtil.redirect(request, response, "./pbc?action=list");
+			
 		} else if ("uform".equals(action)) {
 			
 			//No
@@ -87,8 +95,7 @@ public class PhoneController extends HttpServlet {
 			request.setAttribute("getPerson", getPerson);
 			
 			//Request Dispatcher
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/updateForm.jsp");
-			rd.forward(request, response);
+			WebUtil.forward(request, response, "WEB-INF/writeForm.jsp");
 			
 		} else if ("update".equals(action)) {
 			System.out.println("[수정]");
@@ -106,7 +113,8 @@ public class PhoneController extends HttpServlet {
 			phoneDao.personUpdate(personVo);
 			
 			//Redirect
-			response.sendRedirect("./pbc?action=list");
+//			response.sendRedirect("./pbc?action=list");
+			WebUtil.redirect(request, response, "./pbc?action=list");
 		}
 		
 	}

@@ -21,7 +21,7 @@ public class WebUtil {
 								HttpServletResponse response,
 								String path) throws ServletException, IOException{
 		
-		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/list.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher(path);
 		rd.forward(request, response);
 	}
 	

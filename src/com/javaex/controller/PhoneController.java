@@ -42,7 +42,7 @@ public class PhoneController extends HttpServlet {
 //			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/list.jsp");
 //			rd.forward(request, response);
 			
-			WebUtil.forward(request, response, "WEB-INF/writeForm.jsp");
+			WebUtil.forward(request, response, "/WEB-INF/list.jsp");
 			
 		} else if("wform".equals(action)) {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/writeForm.jsp");
@@ -84,7 +84,7 @@ public class PhoneController extends HttpServlet {
 			WebUtil.redirect(request, response, "./pbc?action=list");
 			
 		} else if ("uform".equals(action)) {
-			
+			System.out.println("12312312321321312");
 			//No
 			int id = Integer.parseInt(request.getParameter("no"));
 			
@@ -95,7 +95,7 @@ public class PhoneController extends HttpServlet {
 			request.setAttribute("getPerson", getPerson);
 			
 			//Request Dispatcher
-			WebUtil.forward(request, response, "WEB-INF/writeForm.jsp");
+			WebUtil.forward(request, response, "/WEB-INF/updateForm.jsp");
 			
 		} else if ("update".equals(action)) {
 			System.out.println("[수정]");
